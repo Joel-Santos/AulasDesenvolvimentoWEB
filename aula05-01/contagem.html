@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="titulo">My title</title>
+    </head>
+    <body>
+        <h1>Início</h1>
+        <p>Texto 1</p>
+        <p>Texto 2</p>
+        <p>Texto 3</p>
+        <article>
+            <p>Texto 4</p>
+            <p>Texto 5</p>
+        </article>
+        <article>
+            <p>Texto 6</p>
+        </article>
+        <div></div>
+        <div></div>
+    </body>
+    <script>
+        let paragrafos = document.getElementsByTagName("p")
+        console.log(paragrafos.length)
+        let divs = document.getElementsByTagName("div");
+        divs[0].innerHTML+= `A quantidade total é: ${paragrafos.length}`
+
+        let article = document.getElementsByTagName("article")
+        let paragrafosAticle = article[1].getElementsByTagName("p");
+        console.log(paragrafosAticle.length)
+        divs[1].innerHTML+= `A quantidade total do article é: ${paragrafosAticle.length}`
+
+
+    </script>
+</html>
