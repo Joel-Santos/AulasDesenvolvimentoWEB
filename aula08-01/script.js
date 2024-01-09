@@ -1,7 +1,8 @@
+const banco = JSON.parse(localStorage.getItem('users')) || []
 document.addEventListener('DOMContentLoaded', function () {
 let formUser = document.getElementById("cadUser")
 let loginUser = document.getElementById("formLogin")
-const banco = JSON.parse(localStorage.getItem('users')) || []
+
 
 //rotina para receber os dados e validar.
 
@@ -14,9 +15,15 @@ if(formUser){
     let telefone =  document.getElementById('telefone').value
     let senha = document.getElementById('senha').value
     let repetirSenha = document.getElementById('repetirSenha').value
-
+    
+    const username = banco.find(u => u.email === email);
+    if(username){
+        alert("Usuário já existe!")
+        return
+    }
     if(senha === repetirSenha){ //validação básica
-        user = {nome, email, telefone, senha} // setando os dados
+
+        user = {nome, email, telefone, senha, "tipoUser": "user"} // setando os dados
         salvarUsuario(user) // passando para a função
         alert("Cadastro realizado com sucesso!")
         window.location.href = 'index.html'
@@ -48,7 +55,7 @@ function login(user, senha){
     const username = banco.find(u => u.email === user);
     const senhaUser = banco.find(u => u.senha === senha)
     let bemVindo = document.getElementById("user");
-    console.
+    console.log
     if(username && senhaUser){
         console.log("Autenticado")
         alert("Sucesso!")
@@ -66,6 +73,34 @@ function login(user, senha){
 
 })
 
+function listarUsers(){
+    let tableUsers = document.getElementById("users")
+    tableUsers.innerHTML+=`
+    <tr>
+        <th> User </th>
+        <th> Telefone </th>
+        <th> Ações </th>
+    </tr>`
+    banco.forEach(user => {
+        tableUsers.innerHTML+=`
+        <tr>
+            <td> ${user.nome} </td>
+            <td>  ${user.telefone}</td>
+            <td> <a href=atualizarUser.html?email=${user.email}> Editar </a> </td>
+        <tr>
+        ` 
+    });
+}
+
+
+
+
+
+
+window.addEventListener('load', () => {
+    listarUsers()
+    
+});
 
 
 
