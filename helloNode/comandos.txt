@@ -1,0 +1,25 @@
+1. Primeiramente devemos criar o diretorio
+2. Acessar pelo terminal.
+
+3. Inicializar o projeto atraves do NPM
+     - npm init  ==> você deve preencher os dados
+     - npm init -y ==> aceita todas as sugestões
+
+4. Alterar o script do package.json
+    - adicionar o comando start da aplicação
+        - "start": "node index.js"
+
+5. Instalação do express para criar o servidor HTTP
+    - npm install express
+6. Se der erro --> configure o proxy
+
+7. instalar o nodemon para reiniciar automaticamente o servidor
+    -npm install --save-dev nodemon
+    -"dev": "nodemon index.js" --> alterar o comando start
+    -npm run dev
+
+8. Manipular os diretórios
+    const path = require('path') 
+    res.sendFile(path.join(__dirname,'index.html'))
+9. Pasta publica para o css, html e js
+- app.use(express.static('public')); 
