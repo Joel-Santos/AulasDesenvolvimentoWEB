@@ -1,0 +1,16 @@
+###
+GET http://www.google.com.br
+
+###
+GET http://localhost:3000/user/criarUser
+
+###
+POST http://localhost:3000/user/criar
+Content-Type: application/json
+
+{ 
+    "nome":  "Joel",
+    "email": "teste@email.com",
+    "senha": "senhacomplexa"
+}
+
