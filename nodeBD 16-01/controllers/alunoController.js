@@ -1,3 +1,4 @@
+const { response } = require('express')
 const db = require('../databases/connection')
 
 alunoControler = {
@@ -17,9 +18,10 @@ alunoControler = {
     },
     listarAlunos: (req, res)=>{
         db.select("*").table("alunos").then(
-            alunos=>{
-                console.log(alunos)
-                res.json(alunos)
+            aluno=>{
+                console.log(aluno)
+                //res.json(alunos)
+                res.render('listarAlunos', {alunos:aluno})
             }).catch(error=>{
                 console.log(error)
             })
@@ -54,12 +56,22 @@ alunoControler = {
     },
     editarAluno:(req, res)=>{
         const id = req.params
-        const {nome, email, data_nascimento, turma, fone, sexo} = req.body 
+        const {nome, email, data_nascimento,turma, fone, sexo} = req.body 
         db.where({matricula:id.matricula}).update({nome, email, data_nascimento, turma, fone, sexo}).table("alunos").then(data=>{
                 res.json({message: "Dados atualizados com sucesso!"})
             }).catch(error=>{
             res.json(error)
             })
+    },
+    formEditarAluno:(req, res)=>{
+        const id = req.params
+        console.log(id)
+        db.select("*").table("alunos").where({matricula:id.matricula}).then(aluno=>{
+            console.log(aluno)
+            res.render('editarAluno',{aluno})
+        }).catch(error=>{
+            console.log(error)
+        })
     }
 
 }

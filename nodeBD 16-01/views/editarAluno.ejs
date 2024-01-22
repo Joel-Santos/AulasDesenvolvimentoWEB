@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Alunos</title>
+</head>
+<body>
+    <% if(aluno.length>0) { %>
+        <%  aluno.forEach(a1=>{  %>
+        <!-- const {matricula, nome, email, data_nascimento, turma, fone, sexo} = req.body  -->
+        <form method="post" action="/alunos/editarAluno/<%= a1.MATRICULA %>?_method=PUT">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" name="nome" id="nome" value="<%= a1.NOME %>"><br>
+            <label for="matricula">Matricula:</label>
+            <input type="text" name="matricula" id="matricula" value="<%= a1.MATRICULA %>"><br>
+            <label for="email">E-mail:</label>
+            <input type="email" name="email" id="email" value="<%= a1.EMAIL %>"><br>
+            <label for="data_nascimento">Data de Nascimento:</label>
+            <input type="date" name="data_nascimento" id="data_nascimento" value="<%=a1.DATA_NASCIMENTO%>"> <br>
+            <label for="turma">Turma:</label>
+            <input type="text" name="turma" id="turma" value="<%= a1.TURMA %>"><br>
+            <label for="fone">Telefone:</label>
+            <input type="tel" name="fone" id="fone" value="<%= a1.FONE %>"><br>
+            <label for="sexo">Sexo:</label> <br>
+            <label for="sexo">M</label>
+            <input type="radio" name="sexo" value="M" id="sexo"><br>
+            <label for="sexo">F</label>
+            <input type="radio" name="sexo" value="M" id="sexo"><br>
+            <label for="sexo">O</label>
+            <input type="radio" name="sexo" value="M" id="sexo"><br>
+            <input type="submit" name="Cadastrar" id="cadastrar">
+        </form>
+        <% }) %>
+    <% } else { %>
+        <p>Nenhum registro encontrado!</p>  
+    <% } %>
+</body>
+</html>
