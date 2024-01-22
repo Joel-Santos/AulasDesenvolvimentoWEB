@@ -16,10 +16,23 @@ Content-Type: application/json
 GET http://localhost:3000/alunos/listarAlunos
 
 ###
-GET http://localhost:3000/alunos/buscarAluno/4423
+GET http://localhost:3000/alunos/buscarAluno/4422
 
 ###
 GET http://localhost:3000/alunos/buscarAlunoTurma/7° Ano B
 
 ###
 DELETE  http://localhost:3000/alunos/deletarAluno/4423
+
+###
+PUT http://localhost:3000/alunos/editarAluno/4422
+Content-Type: application/json
+
+{ 
+    "nome":  "João Maria",
+    "email": "joao@email.com",
+    "data_nascimento": "1990-09-20",
+    "turma": "9° Ano C",
+    "fone": "(84) 997979799",
+    "sexo": "M"
+}
