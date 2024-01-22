@@ -3,6 +3,10 @@ const db = require('../databases/connection')
 
 alunoControler = {
 
+    formCadastro:(req, res)=>{
+        res.render('cadastroAluno')
+    },
+
     novoAluno:(req, res)=>{
         const {matricula, nome, email, data_nascimento, turma, fone, sexo} = req.body 
         db.insert({matricula, nome, email, data_nascimento, turma, fone, sexo}).table("alunos").then(data=>{
@@ -44,12 +48,20 @@ alunoControler = {
     deletarAluno: (req, res)=> {
         const id = req.params
         db.where({matricula: id.matricula }).del().table("alunos").then(data => {
-            res.json({ message: "Aluno removido" })
+            res.json({message:"Aluno removido"})
         }).catch(error => {
             res.json(error)
         })
+    },
+    editarAluno:(req, res)=>{
+        const id = req.params
+        const {nome, email, data_nascimento, turma, fone, sexo} = req.body 
+        db.where({matricula:id.matricula}).update({nome, email, data_nascimento, turma, fone, sexo}).table("alunos").then(data=>{
+                res.json({message: "Dados atualizados com sucesso!"})
+            }).catch(error=>{
+            res.json(error)
+            })
     }
-   
 
 }
 module.exports = alunoControler
